@@ -12,5 +12,8 @@ Template.reCAPTCHA.helpers({
 });
 
 Template.reCAPTCHA.created = function () {
-    $.getScript('https://www.google.com/recaptcha/api.js');
+    if( Session.get('reCaptchaLoaded') !== true) {
+      $.getScript('https://www.google.com/recaptcha/api.js');
+    }
+    Session.set('reCaptchaLoaded', true);
 }
